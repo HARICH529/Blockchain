@@ -1,0 +1,12 @@
+# Backend .gitignore - Secret & Dependency Protection
+.env
+.env.*
+*.env
+*.env.*
+!.env.example
+node_modules/
+logs/
+*.log
+npm-debug.log*
+*.dump
+mongo-data/

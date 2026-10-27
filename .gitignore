@@ -1,0 +1,137 @@
+# ==============================================================================
+# ReturnChain - Bulletproof Security & Production .gitignore
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. CRITICAL: SECRETS, CREDENTIALS & ENVIRONMENT VARIABLES
+# ------------------------------------------------------------------------------
+# Never commit real environment variables, database connection strings, or keys
+.env
+.env.*
+*.env
+*.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
+blockchain/.env
+blockchain/.env.*
+
+# Allow safe sanitized example files
+!.env.example
+!backend/.env.example
+!frontend/.env.example
+
+# Private cryptographic keys, certificates & key stores
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+*.keystore
+*.pkcs12
+id_rsa
+id_rsa.pub
+secp256k1*
+private_keys/
+secrets/
+credentials.json
+client_secret*.json
+
+# ------------------------------------------------------------------------------
+# 2. DEPENDENCY DIRECTORIES
+# ------------------------------------------------------------------------------
+node_modules/
+*/node_modules/
+*/*/node_modules/
+backend/node_modules/
+frontend/node_modules/
+blockchain/node_modules/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# ------------------------------------------------------------------------------
+# 3. BLOCKCHAIN & HARDHAT COMPILATION ARTIFACTS
+# ------------------------------------------------------------------------------
+artifacts/
+cache/
+blockchain/artifacts/
+blockchain/cache/
+typechain/
+typechain-types/
+coverage/
+coverage.json
+.hardhat/
+
+# ------------------------------------------------------------------------------
+# 4. FRONTEND & BACKEND BUILD OUTPUTS
+# ------------------------------------------------------------------------------
+dist/
+dist-ssr/
+build/
+frontend/dist/
+frontend/build/
+.vite/
+frontend/.vite/
+*.local
+
+# ------------------------------------------------------------------------------
+# 5. LOGS & RUNTIME DEBUG TRACES
+# ------------------------------------------------------------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ------------------------------------------------------------------------------
+# 6. LOCAL DATABASES & SCRATCH DUMPS
+# ------------------------------------------------------------------------------
+*.sqlite
+*.sqlite3
+*.db
+dump/
+mongo-data/
+*.dump
+
+# ------------------------------------------------------------------------------
+# 7. OPERATING SYSTEM & EDITOR SPECIFIC FILES
+# ------------------------------------------------------------------------------
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Editors & IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+*~
+
+# AI & Tooling caches
+.gemini/
+.antigravity/

@@ -1,0 +1,1123 @@
+{
+  "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "network": "localhost",
+  "chainId": 31337,
+  "deployedAt": "2026-10-26T04:03:28.322Z",
+  "admin": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        }
+      ],
+      "name": "FraudCaseAlreadyExists",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        }
+      ],
+      "name": "FraudCaseDoesNotExist",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "field",
+          "type": "string"
+        }
+      ],
+      "name": "InvalidInput",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "internalType": "enum ReturnChain.ProductStatus",
+          "name": "currentStatus",
+          "type": "uint8"
+        }
+      ],
+      "name": "InvalidStateTransition",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        }
+      ],
+      "name": "ProductAlreadyExists",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        }
+      ],
+      "name": "ProductDoesNotExist",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        }
+      ],
+      "name": "ReturnAlreadyExists",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        }
+      ],
+      "name": "ReturnDoesNotExist",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "serialNumber",
+          "type": "string"
+        }
+      ],
+      "name": "SerialAlreadyRegistered",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "Unauthorized",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "eventType",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "actor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "actorRole",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "CustodyUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "resolutionNotes",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "resolver",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "FraudCaseResolved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "triggeredRule",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum ReturnChain.FraudRiskLevel",
+          "name": "riskLevel",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "FraudFlagged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "orderId",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "courier",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProductDelivered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "serialNumber",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProductRegistered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "orderId",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "customer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "ReturnCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "returnCenter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "ReturnReceived",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum ReturnChain.VerificationResult",
+          "name": "outcome",
+          "type": "uint8"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "verifier",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "ReturnVerified",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "role",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "RoleGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "role",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "RoleRevoked",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "admin",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "couriers",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "orderId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "createReturn",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "triggeredRule",
+          "type": "string"
+        },
+        {
+          "internalType": "enum ReturnChain.FraudRiskLevel",
+          "name": "riskLevel",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "flagFraud",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        }
+      ],
+      "name": "getFraudCase",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "triggeredRule",
+          "type": "string"
+        },
+        {
+          "internalType": "enum ReturnChain.FraudRiskLevel",
+          "name": "riskLevel",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "isResolved",
+          "type": "bool"
+        },
+        {
+          "internalType": "string",
+          "name": "resolutionNotes",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "resolvedAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "exists",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getFraudCaseCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getFraudCaseIdByIndex",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        }
+      ],
+      "name": "getProduct",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "serialNumber",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "productHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "internalType": "enum ReturnChain.ProductStatus",
+          "name": "status",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "registeredAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "exists",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getProductCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        }
+      ],
+      "name": "getProductHistory",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "eventType",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "actor",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "actorRole",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "location",
+              "type": "string"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "dataHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ReturnChain.CustodyEvent[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getProductIdByIndex",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "serialNumber",
+          "type": "string"
+        }
+      ],
+      "name": "getProductIdBySerial",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        }
+      ],
+      "name": "getReturn",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "orderId",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "customer",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        },
+        {
+          "internalType": "enum ReturnChain.VerificationResult",
+          "name": "outcome",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "inspectionNotesHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "createdAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "verifiedAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "exists",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getReturnCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getReturnIdByIndex",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "role",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "grantRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "eventType",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "actorRole",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "location",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "dataHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "enum ReturnChain.ProductStatus",
+          "name": "newStatus",
+          "type": "uint8"
+        }
+      ],
+      "name": "recordCustody",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "orderId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "location",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "proofHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "recordDelivery",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "location",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "receiptHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "recordReturnReceipt",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "productId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "serialNumber",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "productHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "string",
+          "name": "location",
+          "type": "string"
+        }
+      ],
+      "name": "registerProduct",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "resolutionNotes",
+          "type": "string"
+        }
+      ],
+      "name": "resolveFraudCase",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "returnCenters",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "role",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "revokeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "sellers",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "returnId",
+          "type": "string"
+        },
+        {
+          "internalType": "enum ReturnChain.VerificationResult",
+          "name": "outcome",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "inspectionNotesHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "verifyReturn",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}

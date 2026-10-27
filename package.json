@@ -1,0 +1,28 @@
+{
+  "name": "returnchain",
+  "version": "1.0.0",
+  "description": "Blockchain-Based Product Identity and Chain-of-Custody System for E-Commerce Return Fraud Prevention",
+  "scripts": {
+    "node": "npm --prefix blockchain run node",
+    "deploy": "npm --prefix blockchain run deploy",
+    "test:contract": "npm --prefix blockchain test",
+    "start:backend": "npm --prefix backend start",
+    "dev:backend": "npm --prefix backend run dev",
+    "seed": "npm --prefix backend run seed",
+    "test:backend": "npm --prefix backend test",
+    "start:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "keywords": [
+    "blockchain",
+    "solidity",
+    "hardhat",
+    "ethereum",
+    "ecommerce",
+    "fraud-prevention",
+    "chain-of-custody",
+    "product-passport"
+  ],
+  "author": "ReturnChain Team",
+  "license": "MIT"
+}

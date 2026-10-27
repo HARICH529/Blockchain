@@ -1,0 +1,17 @@
+{
+  "name": "returnchain-blockchain",
+  "version": "1.0.0",
+  "description": "Smart contracts for ReturnChain E-Commerce Return Fraud Prevention (JavaScript)",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy": "hardhat run scripts/deploy.js --network localhost"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "chai": "^4.3.10",
+    "ethers": "^6.12.0",
+    "hardhat": "^2.22.3"
+  }
+}

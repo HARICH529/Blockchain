@@ -1,0 +1,13 @@
+# Blockchain / Hardhat .gitignore
+.env
+.env.*
+*.env
+*.env.*
+node_modules/
+artifacts/
+cache/
+typechain/
+typechain-types/
+coverage/
+coverage.json
+.hardhat/
